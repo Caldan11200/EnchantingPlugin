@@ -1,0 +1,6 @@
+name: Enchanting
+version: ${project.version}
+main: com.banyulsescouts.enchanting.Main
+api-version: 1.17
+authors: [ Caldan112 ]
+description: Custom enchantments
