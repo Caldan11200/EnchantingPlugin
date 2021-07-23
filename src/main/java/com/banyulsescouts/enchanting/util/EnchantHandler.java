@@ -3,59 +3,25 @@ package com.banyulsescouts.enchanting.util;
 import com.banyulsescouts.enchanting.Main;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 public class EnchantHandler {
 
-    public static String getRomanNumeral(int num) {
-        switch (num) {
-            case 1: return "I";
-            case 2: return "II";
-            case 3: return "III";
-            case 4: return "IV";
-            case 5: return "V";
-            case 6: return "VI";
-            case 7: return "VII";
-            case 8: return "VIII";
-            case 9: return "IX";
-            case 10: return "X";
-            case 11: return "XI";
-            case 12: return "XII";
-            case 13: return "XIII";
-            case 14: return "XIV";
-            case 15: return "XV";
-            default: return ""+num;
-        }
-    }
-
-    public static int getEnchantmentLevel(ItemStack item, Enchantment enchant) {
-        Map<Enchantment, Integer> enchantments = item.getEnchantments();
-
-        for (Enchantment enchantment : enchantments.keySet()) {
-            if (enchantment.equals(enchant)) return enchantments.get(enchantment);
-        }
-
-        return 0;
-    }
-
+    @SafeVarargs
     public static List<Material> combineMaterialLists(List<Material>... lists) {
         List<Material> result = new ArrayList<>();
         for (List<Material> list : lists) {
-            for (Material material : list) {
-                result.add(material);
-            }
+            result.addAll(list);
         }
         return result;
     }
 
-    public static List<Enchantment> enchantmentsList(Enchantment... enchants) {
+    /*public static List<Enchantment> enchantmentsList(Enchantment... enchants) {
         return new ArrayList<>(Arrays.asList(enchants));
-    }
+    }*/
 
     public static List<Material> materialList(String type) {
         List<Material> result = new ArrayList<>();
@@ -106,6 +72,9 @@ public class EnchantHandler {
                 return result;
             case "TRIDENT":
                 result.add(Material.TRIDENT);
+                return result;
+            case "ALL":
+                result.add(Material.AIR);
                 return result;
             default: return null;
         }

@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 
 public final class Main extends JavaPlugin {
 
-    private static Main PLUGIN;
     public static List<Enchantment> registered = Arrays.stream(Enchantment.values()).collect(Collectors.toList());
 
     public static final Enchantment YEET = new EnchantmentWrapper("Yeet", 5, EnchantHandler.combineMaterialLists(
@@ -29,12 +28,12 @@ public final class Main extends JavaPlugin {
             EnchantHandler.materialList("SWORDS"),
             EnchantHandler.materialList("TRIDENT")
     ), null, false);
-    public static final Enchantment SHIMMER = new EnchantmentWrapper("Shimmer", 1, null, EnchantHandler.allEnchantments(), false);
+    public static final Enchantment SHIMMER = new EnchantmentWrapper("Shimmer", 1, EnchantHandler.combineMaterialLists(
+            EnchantHandler.materialList("ALL")
+    ), EnchantHandler.allEnchantments(), false);
 
     @Override
     public void onEnable() {
-        PLUGIN = this;
-
         if (!registered.contains(YEET)) registerEnchantment(YEET);
         if (!registered.contains(TELEPATHY)) registerEnchantment(TELEPATHY);
         if (!registered.contains(SHIMMER)) registerEnchantment(SHIMMER);
@@ -59,5 +58,4 @@ public final class Main extends JavaPlugin {
         }
     }
 
-    public static Main getPlugin() { return PLUGIN; }
 }

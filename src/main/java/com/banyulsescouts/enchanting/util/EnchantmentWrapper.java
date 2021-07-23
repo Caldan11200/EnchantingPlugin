@@ -29,21 +29,20 @@ public class EnchantmentWrapper extends Enchantment {
 
     @Override
     public boolean canEnchantItem(ItemStack arg0) {
-        if (enchantables.isEmpty()) return true;
-        if (enchantables.contains(arg0.getType())) return true;
-        else return false;
+        if (enchantables.isEmpty()) return false;
+        if (enchantables.contains(Material.AIR)) return true;
+        return enchantables.contains(arg0.getType());
     }
 
     @Override
     public boolean conflictsWith(Enchantment arg0) {
         if (conflicts == null || conflicts.isEmpty()) return false;
-        if (conflicts.contains(arg0)) return true;
-        return false;
+        return conflicts.contains(arg0);
     }
 
     @Override
     public EnchantmentTarget getItemTarget() {
-        return null;
+        return EnchantmentTarget.BREAKABLE;
     }
 
     @Override
