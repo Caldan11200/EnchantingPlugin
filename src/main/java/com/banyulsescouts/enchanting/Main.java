@@ -1,7 +1,12 @@
 package com.banyulsescouts.enchanting;
 
+import com.banyulsescouts.enchanting.listeners.AutoSmelt;
+import com.banyulsescouts.enchanting.listeners.Backpack;
+import com.banyulsescouts.enchanting.listeners.Telepathy;
+import com.banyulsescouts.enchanting.listeners.Yeet;
 import com.banyulsescouts.enchanting.util.EnchantHandler;
 import com.banyulsescouts.enchanting.util.EnchantmentWrapper;
+import org.bukkit.Bukkit;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -27,19 +32,32 @@ public final class Main extends JavaPlugin {
             EnchantHandler.materialList("SHOVELS"),
             EnchantHandler.materialList("SWORDS"),
             EnchantHandler.materialList("TRIDENT")
-    ), null, false);
+    ), EnchantHandler.enchantmentsList(Main.AUTO_SMELT), false);
     public static final Enchantment SHIMMER = new EnchantmentWrapper("Shimmer", 1, EnchantHandler.combineMaterialLists(
             EnchantHandler.materialList("ALL")
     ), EnchantHandler.allEnchantments(), false);
+    public static final Enchantment AUTO_SMELT = new EnchantmentWrapper("Auto Smelt", 1, EnchantHandler.combineMaterialLists(
+            EnchantHandler.materialList("AXES"),
+            EnchantHandler.materialList("PICKAXES"),
+            EnchantHandler.materialList("SHOVELS")
+    ), EnchantHandler.enchantmentsList(Enchantment.LOOT_BONUS_BLOCKS, Enchantment.SILK_TOUCH, Main.TELEPATHY), false);
+    public static final Enchantment BACKPACK = new EnchantmentWrapper("Backpack", 1, EnchantHandler.combineMaterialLists(
+            EnchantHandler.materialList("SHULKER_BOXES"),
+            EnchantHandler.materialList("ENDER_CHEST")
+    ), null, false);
 
     @Override
     public void onEnable() {
         if (!registered.contains(YEET)) registerEnchantment(YEET);
         if (!registered.contains(TELEPATHY)) registerEnchantment(TELEPATHY);
         if (!registered.contains(SHIMMER)) registerEnchantment(SHIMMER);
+        if (!registered.contains(AUTO_SMELT)) registerEnchantment(AUTO_SMELT);
+        if (!registered.contains(BACKPACK)) registerEnchantment(BACKPACK);
 
-        //Bukkit.getPluginManager().registerEvents(new Yeet(), this);
-        //Bukkit.getPluginManager().registerEvents(new Telepathy(), this);
+        Bukkit.getPluginManager().registerEvents(new Yeet(), this);
+        Bukkit.getPluginManager().registerEvents(new Telepathy(), this);
+        Bukkit.getPluginManager().registerEvents(new AutoSmelt(), this);
+        Bukkit.getPluginManager().registerEvents(new Backpack(), this);
     }
 
     @Override
