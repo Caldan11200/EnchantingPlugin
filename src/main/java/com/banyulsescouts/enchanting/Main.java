@@ -4,6 +4,7 @@ import com.banyulsescouts.enchanting.listeners.AutoSmelt;
 import com.banyulsescouts.enchanting.listeners.Backpack;
 import com.banyulsescouts.enchanting.listeners.Telepathy;
 import com.banyulsescouts.enchanting.listeners.Yeet;
+import com.banyulsescouts.enchanting.util.AnvilCrafting;
 import com.banyulsescouts.enchanting.util.EnchantHandler;
 import com.banyulsescouts.enchanting.util.EnchantmentWrapper;
 import org.bukkit.Bukkit;
@@ -58,6 +59,8 @@ public final class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new Telepathy(), this);
         Bukkit.getPluginManager().registerEvents(new AutoSmelt(), this);
         Bukkit.getPluginManager().registerEvents(new Backpack(), this);
+
+        Bukkit.getPluginManager().registerEvents(new AnvilCrafting(), this);
     }
 
     @Override
