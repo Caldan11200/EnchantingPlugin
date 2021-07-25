@@ -2,12 +2,12 @@
 Custom enchants for Scout server
 
 # Implemented Enchantments
+- Auto Smelt
 - Shimmer
 - Telepathy
 - Yeet
 
 # Planned Enchantments
-- Auto Smelt 
 - Avarice
 - Backpack
 - Canabalistic
